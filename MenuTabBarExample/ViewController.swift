@@ -10,7 +10,7 @@ import UIKit
 
 struct ViewControllerUIConstants {
   static let purpleColor = UIColor(red: 162/255, green: 164/255, blue: 215/255, alpha: 1.0)
-  static let squezeeConstant: CGFloat = 5
+  static let squezeeConstant: CGFloat = 8
 }
 
 final class ViewController: UIViewController {
@@ -29,6 +29,7 @@ final class ViewController: UIViewController {
   @objc func homeButtonAction(_ sender: UIButton) {
     squezeeStackView()
     rotateHomeButton()
+    squezeeButton()
   }
   
   private func animateMenu() {
@@ -45,9 +46,27 @@ final class ViewController: UIViewController {
   }
   
   private func rotateHomeButton() {
+    let constantRotation: CGFloat = (.pi/6)*2
+    if let button = homeButton {
+      UIView.animate(withDuration: 1.0, animations: {
+        button.transform = button.transform.rotated(by: constantRotation)
+      }, completion: { _ in
+        UIView.animate(withDuration: 0.3) {
+          button.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }
+        self.leftStackViewConstraint.constant -= ViewControllerUIConstants.squezeeConstant
+        self.rightStackViewConstraint.constant -= ViewControllerUIConstants.squezeeConstant
+        UIView.animate(withDuration: 0.3) {
+          self.view.layoutIfNeeded()
+        }
+      })
+    }
+  }
+  
+  private func squezeeButton() {
     if let button = homeButton {
       UIView.animate(withDuration: 0.5, animations: {
-        button.transform = button.transform.rotated(by: (.pi / 6) * 2)
+        button.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
       }, completion: nil)
     }
   }
@@ -58,11 +77,6 @@ final class ViewController: UIViewController {
     UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: {
       self.view.layoutIfNeeded()
     }) { _ in
-      self.leftStackViewConstraint.constant -= ViewControllerUIConstants.squezeeConstant
-      self.rightStackViewConstraint.constant -= ViewControllerUIConstants.squezeeConstant
-      UIView.animate(withDuration: 0.3){
-       self.view.layoutIfNeeded()
-      }
     }
   }
   

@@ -15,26 +15,30 @@ final class HexagonalHomeButton: UIView {
   init(frame: CGRect, color: UIColor) {
     self.color = color
     super.init(frame: frame)
+    setupLayer()
   }
   
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
-  override func draw(_ rect: CGRect) {
-    color.setStroke()
-    let path = roundedPolygonPath(rect: rect, sides: 6, cornerRadius: 2)
-    path.stroke()
+  private func setupLayer() {
+    let shapeLayer = CAShapeLayer()
+    shapeLayer.path = roundedPolygonPath(rect: frame, sides: 6, cornerRadius: 2).cgPath
+    shapeLayer.fillColor = color.cgColor
+    shapeLayer.strokeColor = color.cgColor
+    layer.addSublayer(shapeLayer)
   }
   
-  private func roundedPolygonPath(rect: CGRect, sides: Int, cornerRadius: CGFloat, rotationOffset: CGFloat = 0, lineWidth: CGFloat = 1) -> UIBezierPath {
+  private func roundedPolygonPath(rect: CGRect, sides: Int, cornerRadius: CGFloat) -> UIBezierPath {
     let path = UIBezierPath()
     let theta: CGFloat = CGFloat(2.0 * .pi) / CGFloat(sides)
     let width = min(rect.size.width, rect.size.height)
+    let lineWidth: CGFloat = 1
     
     let center = CGPoint(x: rect.origin.x + width / 2.0, y: rect.origin.y + width / 2.0)
     let radius = (width - lineWidth + cornerRadius - (cos(theta) * cornerRadius)) / 2.0
-    var angle = CGFloat(rotationOffset)
+    var angle = CGFloat(11)
     let corner = CGPoint(x: center.x + (radius - cornerRadius) * cos(angle), y: center.y + (radius - cornerRadius) * sin(angle))
     path.move(to: CGPoint(x: corner.x + cornerRadius * cos(angle + theta), y: corner.y + cornerRadius * sin(angle + theta)))
     

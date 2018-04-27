@@ -8,18 +8,45 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+struct ViewControllerUIConstants {
+  static let purpleColor = UIColor(red: 162/255, green: 164/255, blue: 215/255, alpha: 1.0)
+}
+
+final class ViewController: UIViewController {
+  
+  @IBOutlet weak var homeButtonContainerView: UIView!
+  @IBOutlet weak var leftStackViewConstraint: NSLayoutConstraint!
+  @IBOutlet weak var rightStackViewConstraint: NSLayoutConstraint!
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    setupHomeButton()
   }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  
+  @IBAction func plusButtonTapped(_ sender: UIButton) {
+    squezeeStackView()
   }
-
-
+  
+  private func squezeeStackView() {
+    leftStackViewConstraint.constant += 20
+    rightStackViewConstraint.constant += 20
+    UIView.animate(withDuration: 0.3, delay: 0.0, options: [], animations: {
+      self.view.layoutIfNeeded()
+    }) { _ in
+      self.leftStackViewConstraint.constant -= 20
+      self.rightStackViewConstraint.constant -= 20
+      UIView.animate(withDuration: 0.3){
+       self.view.layoutIfNeeded()
+      }
+    }
+  }
+  
+  func setupHomeButton() {
+    let homeButton = HexagonalHomeButton.imageForSize(homeButtonContainerView.frame.size, color: ViewControllerUIConstants.purpleColor)
+    let imageView = UIImageView(image: homeButton)
+    homeButtonContainerView.addSubview(imageView)
+    let rotation = CGAffineTransform(rotationAngle: 11)
+    homeButtonContainerView.transform = rotation
+  }
 }
 

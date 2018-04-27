@@ -12,6 +12,7 @@
 		9294DBA9209386E500804B9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9294DBA7209386E500804B9F /* Main.storyboard */; };
 		9294DBAB209386E600804B9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9294DBAA209386E600804B9F /* Assets.xcassets */; };
 		9294DBAE209386E600804B9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9294DBAC209386E600804B9F /* LaunchScreen.storyboard */; };
+		9294DBB62093904700804B9F /* HexagonalHomeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9294DBB52093904700804B9F /* HexagonalHomeButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		9294DBAA209386E600804B9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9294DBAD209386E600804B9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9294DBAF209386E600804B9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9294DBB52093904700804B9F /* HexagonalHomeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonalHomeButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				9294DBA3209386E500804B9F /* AppDelegate.swift */,
 				9294DBA5209386E500804B9F /* ViewController.swift */,
+				9294DBB52093904700804B9F /* HexagonalHomeButton.swift */,
 				9294DBA7209386E500804B9F /* Main.storyboard */,
 				9294DBAA209386E600804B9F /* Assets.xcassets */,
 				9294DBAC209386E600804B9F /* LaunchScreen.storyboard */,
@@ -136,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9294DBA6209386E500804B9F /* ViewController.swift in Sources */,
+				9294DBB62093904700804B9F /* HexagonalHomeButton.swift in Sources */,
 				9294DBA4209386E500804B9F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

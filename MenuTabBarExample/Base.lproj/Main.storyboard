@@ -59,11 +59,11 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J6W-AB-Bfn">
-                                <rect key="frame" x="162.5" y="587" width="50" height="50"/>
+                                <rect key="frame" x="160" y="582" width="55" height="55"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J6W-AB-Bfn" secondAttribute="height" multiplier="1:1" id="hXk-Oh-EDF"/>
-                                    <constraint firstAttribute="width" constant="50" id="tCq-w5-Cwz"/>
+                                    <constraint firstAttribute="width" constant="55" id="tCq-w5-Cwz"/>
                                 </constraints>
                             </view>
                         </subviews>

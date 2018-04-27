@@ -18,6 +18,8 @@ final class ViewController: UIViewController {
   @IBOutlet weak var homeButtonContainerView: UIView!
   @IBOutlet weak var leftStackViewConstraint: NSLayoutConstraint!
   @IBOutlet weak var rightStackViewConstraint: NSLayoutConstraint!
+  var homeButton: UIButton?
+  var isShowingMenu = false
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,6 +28,28 @@ final class ViewController: UIViewController {
   
   @objc func homeButtonAction(_ sender: UIButton) {
     squezeeStackView()
+    rotateHomeButton()
+  }
+  
+  private func animateMenu() {
+    
+    func animateToShowMenu() {
+      
+    }
+    
+    func animateToHideMenu() {
+      
+    }
+    
+    !isShowingMenu ? animateToShowMenu() : animateToHideMenu()
+  }
+  
+  private func rotateHomeButton() {
+    if let button = homeButton {
+      UIView.animate(withDuration: 0.5, animations: {
+        button.transform = button.transform.rotated(by: (.pi / 6) * 2)
+      }, completion: nil)
+    }
   }
   
   private func squezeeStackView() {
@@ -45,15 +69,18 @@ final class ViewController: UIViewController {
   // TODO: Create this button inside HexagonalHomeButton class
   func setupHomeButton() {
     let color = ViewControllerUIConstants.purpleColor
-    let homeButton = HexagonalHomeButton.imageForSize(homeButtonContainerView.frame.size, color: color)
-    let button = UIButton(frame: CGRect(x: 0, y: 0, width: homeButtonContainerView.frame.size.width, height: homeButtonContainerView.frame.size.height))
-    button.addTarget(self, action: #selector(homeButtonAction), for: .touchUpInside)
-    button.setImage(homeButton, for: .normal)
-    button.layer.shadowColor = color.cgColor
-    button.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-    button.layer.shadowRadius = 7.0
-    button.layer.shadowOpacity = 0.6
-    homeButtonContainerView.addSubview(button)
+    let homeButtonImage = HexagonalHomeButton.imageForSize(homeButtonContainerView.frame.size, color: color)
+    homeButton = UIButton(frame: CGRect(x: 0, y: 0, width: homeButtonContainerView.frame.size.width, height: homeButtonContainerView.frame.size.height))
+    homeButton?.addTarget(self, action: #selector(homeButtonAction), for: .touchUpInside)
+    homeButton?.setImage(homeButtonImage, for: .normal)
+    homeButton?.layer.shadowColor = color.cgColor
+    homeButton?.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+    homeButton?.layer.shadowRadius = 7.0
+    homeButton?.layer.shadowOpacity = 0.6
+    homeButton?.adjustsImageWhenHighlighted = false
+    if let button = homeButton {
+      homeButtonContainerView.addSubview(button)
+    }
   }
 }
 
